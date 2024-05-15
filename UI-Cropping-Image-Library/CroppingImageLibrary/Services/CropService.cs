@@ -86,6 +86,14 @@ namespace CroppingImageLibrary.Services
                 new Rect(_cropTool.TopLeftX, _cropTool.TopLeftY, _cropTool.Width, _cropTool.Height)
             );
 
+        public void SetCroppedArea(CropArea area)
+        {
+            _cropTool.SetTopLeftX(area.CroppedRectAbsolute.TopLeft.X);
+            _cropTool.SetTopLeftY(area.CroppedRectAbsolute.TopLeft.Y);
+            _cropTool.SetBottomRightX(area.CroppedRectAbsolute.BottomRight.X);
+            _cropTool.SetBottomRightY(area.CroppedRectAbsolute.BottomRight.Y);
+        }
+
         private void AdornerOnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             _canvas.ReleaseMouseCapture();

@@ -19,6 +19,30 @@ namespace CroppingImageLibrary.Services.Tools
         public double Height => _cropShape.Shape.Height;
         public double Width => _cropShape.Shape.Width;
 
+        public void SetTopLeftX(double x)
+        { 
+            Canvas.SetLeft(_cropShape.Shape, x);
+            Redraw();
+        }
+
+        public void SetTopLeftY(double y)
+        {
+            Canvas.SetTop(_cropShape.Shape, y);
+            Redraw();
+        }
+
+        public void SetBottomRightX(double x)
+        {
+            _cropShape.Shape.Width = x - Canvas.GetLeft(_cropShape.Shape);
+            Redraw();
+        }
+
+        public void SetBottomRightY(double y)
+        {
+            _cropShape.Shape.Height = y - Canvas.GetTop(_cropShape.Shape);
+            Redraw();
+        }
+
         public CropTool(Canvas canvas)
         {
             _canvas = canvas;
@@ -53,6 +77,14 @@ namespace CroppingImageLibrary.Services.Tools
             _canvas.Children.Add(_thumbService.BottomRight);
 
             _canvas.Children.Add(_textService.TextBlock);
+        }
+
+        public void Redraw()
+        {
+            _cropShape.Redraw(TopLeftX, TopLeftY, Width, Height);
+            _shadeService.Redraw();
+            _thumbService.Redraw();
+            _textService.Redraw();
         }
 
         public void Redraw(double newX, double newY, double newWidth, double newHeight)
