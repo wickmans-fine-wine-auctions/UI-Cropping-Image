@@ -19,6 +19,8 @@ namespace CroppingImageLibrary.Services.Tools
         public double Height => _cropShape.Shape.Height;
         public double Width => _cropShape.Shape.Width;
 
+        public double AspectRatio { get; set; }
+
         public void SetTopLeftX(double x)
         { 
             Canvas.SetLeft(_cropShape.Shape, x);
@@ -67,10 +69,10 @@ namespace CroppingImageLibrary.Services.Tools
 
             _canvas.Children.Add(_shadeService.ShadeOverlay);
 
-            _canvas.Children.Add(_thumbService.BottomMiddle);
-            _canvas.Children.Add(_thumbService.LeftMiddle);
-            _canvas.Children.Add(_thumbService.TopMiddle);
-            _canvas.Children.Add(_thumbService.RightMiddle);
+            //_canvas.Children.Add(_thumbService.BottomMiddle);
+            //_canvas.Children.Add(_thumbService.LeftMiddle);
+            //_canvas.Children.Add(_thumbService.TopMiddle);
+            //_canvas.Children.Add(_thumbService.RightMiddle);
             _canvas.Children.Add(_thumbService.TopLeft);
             _canvas.Children.Add(_thumbService.TopRight);
             _canvas.Children.Add(_thumbService.BottomLeft);

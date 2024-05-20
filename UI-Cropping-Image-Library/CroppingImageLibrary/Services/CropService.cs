@@ -80,6 +80,12 @@ namespace CroppingImageLibrary.Services
             _cropTool.Redraw(0, 0, 0, 0);
         }
 
+        public double AspectRatio
+        {
+            get { return _cropTool.AspectRatio;}
+            set { _cropTool.AspectRatio = value; }
+        }
+
         public CropArea GetCroppedArea() =>
             new CropArea(
                 _cropAdorner.RenderSize,

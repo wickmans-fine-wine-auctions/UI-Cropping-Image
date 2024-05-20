@@ -29,6 +29,27 @@ namespace CroppingImageLibrary.Services.State
             double top = Math.Min(point.Y, _startPoint.Y);
             double width = Math.Abs(point.X - _startPoint.X);
             double height = Math.Abs(point.Y - _startPoint.Y);
+            // Apply aspect ratio
+            if (_cropTool.AspectRatio > 0)
+            {
+                height = width / _cropTool.AspectRatio;
+                if (top + height > _canvas.ActualHeight)
+                {
+                    height = _canvas.ActualHeight - top;
+                    width = height * _cropTool.AspectRatio;
+                }
+                else if (top + height < _startPoint.Y)
+                {
+                    top = _startPoint.Y - height;
+                    if (top < 0)
+                    {
+                        top = 0;
+                        height = _startPoint.Y;
+                        width = height * _cropTool.AspectRatio;
+                    }
+                }
+            }
+
 
             SetCreateBorderLimit(ref left, ref top, ref width, ref height);
 
